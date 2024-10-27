@@ -1,5 +1,4 @@
-# yoctoBitbakeRecipes
-Explaining examples of recipes of the bootlin yocto tutorial
+# Explaining examples of recipes of the bootlin yocto tutorial
 
 ```bash
 SUMMARY = "Hello world program"
