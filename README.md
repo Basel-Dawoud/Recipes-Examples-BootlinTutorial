@@ -1,6 +1,8 @@
 # Recipes Examples
 ### Explaining examples of recipes of the bootlin yocto tutorial
 
+### Example
+
 ```bash
 SUMMARY = "Hello world program"
 DESCRIPTION = "Hello world program"
