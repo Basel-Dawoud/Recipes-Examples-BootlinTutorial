@@ -1,4 +1,5 @@
-# Explaining examples of recipes of the bootlin yocto tutorial
+# How to write a recipe?
+## Explaining examples of recipes of the bootlin yocto tutorial
 
 ```bash
 SUMMARY = "Hello world program"
