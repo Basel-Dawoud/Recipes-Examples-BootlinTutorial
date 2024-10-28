@@ -1,4 +1,4 @@
-# Recipes Examples
+# Yocto Recipe Examples from Bootlin Tutorial
 ### Describing instances of recipes from the Bootlin Yocto tutorial.
 
 ### Example
