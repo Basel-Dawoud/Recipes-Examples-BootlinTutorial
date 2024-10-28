@@ -83,7 +83,7 @@ For example, a piece of software whose code is licensed under GPLv2 but has acco
 - `LICENSE:${PN} = "GPL-2.0.only"`
 - `LICENSE:${PN}-doc = "GFDL-1.2"`
 
-## [`SRC_URI`](https://docs.yoctoproject.org/bitbake/2.8/bitbake-user-manual/bitbake-user-manual-ref-variables.html#term-SRC_URI)
+## `SRC_URI`
 
 The list of source files — local or remote. This variable tells BitBake which bits to pull for the build and how to pull them. For example, if the recipe or append file needs to fetch a single tarball from the Internet, the recipe or append file uses a [SRC_URI](https://docs.yoctoproject.org/bitbake/2.8/bitbake-user-manual/bitbake-user-manual-ref-variables.html#term-SRC_URI) entry that specifies that tarball. On the other hand, if the recipe or append file needs to fetch a tarball, apply two patches, and include a custom file, the recipe or append file needs an [SRC_URI](https://docs.yoctoproject.org/bitbake/2.8/bitbake-user-manual/bitbake-user-manual-ref-variables.html#term-SRC_URI) variable that specifies all those sources.
 
