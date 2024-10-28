@@ -58,11 +58,11 @@ The specific values for the `SECTION` variable can vary by distribution and pack
 
 The list of source licenses for the recipe. Follow these rules:
 
-• Do not use spaces within individual license names.
-• Separate license names using | (pipe) when there is a choice between licenses.
-• Separate license names using & (ampersand) when there are multiple licenses for different parts of the source.
-• You can use spaces between license names.
-• For standard licenses, use the names of the files in `meta/files/common-licenses/` or the [SPDXLICENSEMAP](https://docs.yoctoproject.org/ref-manual/variables.html#term-SPDXLICENSEMAP) flag names defined in `meta/conf/licenses.conf`.
+- Do not use spaces within individual license names.
+- Separate license names using | (pipe) when there is a choice between licenses.
+- Separate license names using & (ampersand) when there are multiple licenses for different parts of the source.
+- You can use spaces between license names.
+- For standard licenses, use the names of the files in `meta/files/common-licenses/` or the [SPDXLICENSEMAP](https://docs.yoctoproject.org/ref-manual/variables.html#term-SPDXLICENSEMAP) flag names defined in `meta/conf/licenses.conf`.
 
 Here are some examples:
 
