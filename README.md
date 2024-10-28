@@ -1,7 +1,7 @@
 # Recipes Examples
-### Explaining examples of recipes of the bootlin yocto tutorial
+### Describing instances of recipes from the Bootlin Yocto tutorial.
 
-### Example
+### Example_1
 
 ```bash
 SUMMARY = "Hello world program"
@@ -30,7 +30,8 @@ install -m 0755 hello ${D}${bindir}
 
 ## `DESCRIPTION`
 
-The package description used by package managers. If not set, [DESCRIPTION](https://docs.yoctoproject.org/ref-manual/variables.html#term-DESCRIPTION) takes the value of the [SUMMARY](https://docs.yoctoproject.org/ref-manual/variables.html#term-SUMMARY) variable.
+- The package description used by package managers.
+- If not set, [DESCRIPTION](https://docs.yoctoproject.org/ref-manual/variables.html#term-DESCRIPTION) takes the value of the [SUMMARY](https://docs.yoctoproject.org/ref-manual/variables.html#term-SUMMARY) variable.
 
 ## `HOMEPAGE`
 
@@ -65,9 +66,9 @@ The list of source licenses for the recipe. Follow these rules:
 
 Here are some examples:
 
-`LICENSE = "LGPL-2.1-only | GPL-3.0-only"
-LICENSE = "MPL-1.0 & LGPL-2.1-only"
-LICENSE = "GPL-2.0-or-later"`
+- `LICENSE = "LGPL-2.1-only | GPL-3.0-only"`
+- `LICENSE = "MPL-1.0 & LGPL-2.1-only"`
+- `LICENSE = "GPL-2.0-or-later"`
 
 The first example is from the recipes for Qt, which the user may choose to distribute under either the LGPL version 2.1 or GPL version 3.
 
@@ -75,11 +76,12 @@ The second example is from Cairo where two licenses cover different parts of the
 
 The final example is from `sysstat`, which presents a single license.
 
-You can also specify licenses on a per-package basis to handle situations where components of the output have different licenses. For example, a piece of software whose code is licensed under GPLv2 but has accompanying documentation licensed under the GNU Free Documentation License 1.2 could be specified as follows:
+You can also specify licenses on a per-package basis to handle situations where components of the output have different licenses.
+For example, a piece of software whose code is licensed under GPLv2 but has accompanying documentation licensed under the GNU Free Documentation License 1.2 could be specified as follows:
 
-`LICENSE = "GFDL-1.2 & GPL-2.0-only"
-LICENSE:${PN} = "GPL-2.0.only"
-LICENSE:${PN}-doc = "GFDL-1.2"` 
+- `LICENSE = "GFDL-1.2 & GPL-2.0-only"`
+- `LICENSE:${PN} = "GPL-2.0.only"`
+- `LICENSE:${PN}-doc = "GFDL-1.2"`
 
 ## [`SRC_URI`](https://docs.yoctoproject.org/bitbake/2.8/bitbake-user-manual/bitbake-user-manual-ref-variables.html#term-SRC_URI)
 
