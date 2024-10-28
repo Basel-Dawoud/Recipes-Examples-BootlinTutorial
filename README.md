@@ -1,7 +1,7 @@
 # Recipes Examples
 ### Describing instances of recipes from the Bootlin Yocto tutorial.
 
-### Example_1
+### Example
 
 ```bash
 SUMMARY = "Hello world program"
@@ -102,18 +102,18 @@ In this example:
 - The main source code is fetched from a tarball.
 - A custom configuration file and a bug fix patch are included in the build process.
 
-## [`SRCREV`](https://docs.yoctoproject.org/bitbake/2.8/bitbake-user-manual/bitbake-user-manual-ref-variables.html#term-SRCREV)
+## `SRCREV`
 
 The revision of the source code used to build the package. This variable applies only when using Subversion, Git, Mercurial and Bazaar. If you want to build a fixed revision and you want to avoid
 performing a query on the remote repository every time BitBake parses your recipe, you should specify a [SRCREV](https://docs.yoctoproject.org/bitbake/2.8/bitbake-user-manual/bitbake-user-manual-ref-variables.html#term-SRCREV) that is a full revision identifier and not just a tag.
 
-### When to Use `SRCREV`
+### When to Use `SRCREV`?
 
 - **Fixed Revisions**: It’s best to specify `SRCREV` when you want to work with a known stable commit or specific feature set, rather than the latest version in a branch.
 - **Development vs. Stable Builds**: In a development setting, you might want to point to the latest commit in a branch for active development. In contrast, for production builds, it’s prudent to specify a known good revision.
 - Example: `SRCREV = "2d47b4eb66e705458a17622c2e09367300a7b118"`
 
-## [`S`](https://docs.yoctoproject.org/ref-manual/variables.html#term-S)
+## `s`
 
 The `S` variable in a BitBake recipe specifies the location of the unpacked source code within the build directory.
 
@@ -130,7 +130,7 @@ The `S` variable in a BitBake recipe specifies the location of the unpacked sour
 3. **Custom Paths**:
     - When the unpacked source code resides in a directory with a different naming convention, or when the source is fetched from a source control management (SCM) system (like Git or Subversion), you must explicitly set `S` to point to the correct location.
 
-### When to Set `S`
+### When to Set `S`?
 
 1. **Non-standard Directory Names**:
     - If the source tarball extracts into a directory that does not match the `${BPN}-${PV}` format, you need to define `S` to point to the correct directory.
@@ -168,7 +168,7 @@ S = "${WORKDIR}/git"
 
 The `S` variable is crucial for directing the build system to the correct location of the unpacked source code. Properly setting `S` ensures that the build process can locate and compile the source files effectively. By understanding how and when to set this variable, you can manage various source formats and control the build environment more accurately.
 
-## [`LIC_FILES_CHKSUM`](https://docs.yoctoproject.org/ref-manual/variables.html#term-LIC_FILES_CHKSUM)
+## `LIC_FILES_CHECKSUM`
 
 Checksums of the license text in the recipe source code.
 
@@ -178,7 +178,7 @@ This variable must be defined for all recipes (unless [`LICENSE](https://docs.yo
 
 Setting the `LICENSE` variable to "`CLOSED`" in a BitBake recipe indicates that the software is proprietary and does not require tracking of license changes via `LIC_FILES_CHKSUM`. 
 
-## `do_compile`[](https://docs.yoctoproject.org/ref-manual/tasks.html#do-compile)
+## `do_compile`
 
 Compiles the source code. This task runs with the current working directory set to `${`[B](https://docs.yoctoproject.org/ref-manual/variables.html#term-B)`}`.
 
@@ -186,7 +186,7 @@ The default behavior of this task is to run the `oe_runmake` function if a makef
 
 If no such file is found, the [do_compile](https://docs.yoctoproject.org/ref-manual/tasks.html#ref-tasks-compile) task does nothing.
 
-## `oe_runmake`function
+### `oe_runmake` function
 
 used to run make.
 
@@ -194,24 +194,27 @@ used to run make.
 - displays the make command
 - checks for errors generated via the call.
 
-## `do_install`[](https://docs.yoctoproject.org/ref-manual/tasks.html#do-install)
+## `do_install`
 
-Copies files that are to be packaged into the holding area `${`[D](https://docs.yoctoproject.org/ref-manual/variables.html#term-D)`}`. This task runs with the current working directory set to `${`[B](https://docs.yoctoproject.org/ref-manual/variables.html#term-B)`}`, which is the compilation directory. The [do_install](https://docs.yoctoproject.org/ref-manual/tasks.html#ref-tasks-install) task, as well as other tasks that either directly or indirectly depend on the installed files (e.g. [do_package](https://docs.yoctoproject.org/ref-manual/tasks.html#ref-tasks-package), [do_package_write_*](https://docs.yoctoproject.org/ref-manual/tasks.html#ref-tasks-package-write-deb), and [do_rootfs](https://docs.yoctoproject.org/ref-manual/tasks.html#ref-tasks-rootfs)), run under [fakeroot](https://docs.yoctoproject.org/overview-manual/concepts.html#fakeroot-and-pseudo).
+- Copies files that are to be packaged into the holding area `${`[D](https://docs.yoctoproject.org/ref-manual/variables.html#term-D)`}`.
+- This task runs with the current working directory set to `${`[B](https://docs.yoctoproject.org/ref-manual/variables.html#term-B)`}`, which is the compilation directory.
+- The [do_install](https://docs.yoctoproject.org/ref-manual/tasks.html#ref-tasks-install) task, as well as other tasks that either directly or indirectly depend on the installed files (e.g. [do_package](https://docs.yoctoproject.org/ref-manual/tasks.html#ref-tasks-package), [do_package_write_*](https://docs.yoctoproject.org/ref-manual/tasks.html#ref-tasks-package-write-deb), and [do_rootfs](https://docs.yoctoproject.org/ref-manual/tasks.html#ref-tasks-rootfs)), run under [fakeroot](https://docs.yoctoproject.org/overview-manual/concepts.html#fakeroot-and-pseudo).
 
 <aside>
-💡
 
-Note
+💡 ### Note
 
-When installing files, be careful not to set the owner and group IDs of the installed files to unintended values. Some methods of copying files, notably when using the recursive `cp` command, can preserve the UID and/or GID of the original file, which is usually not what you want.
+> When installing files, be careful not to set the owner and group IDs of the installed files to unintended values. Some methods of copying files, notably when using the recursive `cp` command, can preserve the UID and/or GID of the original file, which is usually not what you want.
+> 
+> 
+> The `host-user-contaminated` QA check checks for files that probably have the wrong ownership.
+> 
+> Safe methods for installing files include the following:
+> 
+> - The `install` utility. This utility is the preferred method.
+> - The `cp` command with the `no-preserve=ownership` option.
+> - The `tar` command with the `no-same-owner` option.
 
-The `host-user-contaminated` QA check checks for files that probably have the wrong ownership.
-
-Safe methods for installing files include the following:
-
-- The `install` utility. This utility is the preferred method.
-- The `cp` command with the `-no-preserve=ownership` option.
-- The `tar` command with the `-no-same-owner` option.
 </aside>
 
 **In summary**, this `do_install` function does the following:
@@ -219,13 +222,14 @@ Safe methods for installing files include the following:
 - Creates the necessary directory for **executable binaries** in the target file system.
 - Installs the compiled `hello` binary into that directory with the appropriate permissions.
 
-# version-agnostic part
+
+# Example of a recipe with a version-agnostic part
 
 A "version-agnostic part" of a recipe refers to sections of the recipe that do not depend on a specific version of the software being built. This can include shared configurations, common build steps, or patches that apply to multiple versions of the software.
 
 Parts of the recipe such as `do_install`, `do_configure`, and even some variables can be written in a way that they apply regardless of the version. This means that only the version-specific elements (like the source URL or version numbers) need to be updated when a new version is released.
 
-### Example:
+### Example_1:
 
 A typical use case might be a recipe for a library that has different versions but has the same build process and install steps. You might define:
 
@@ -250,7 +254,7 @@ do_install() {
 
 In this example, the `do_configure` and `do_install` functions can be reused across multiple versions by simply changing the `PV` and `SRC_URI` variables when new versions are released.
 
-### Example:
+### Example_2:
 
 ```bash
 SUMMARY = "GNU file archiving program"
@@ -325,6 +329,8 @@ do_install() { ... }
 
 This recipe provides the necessary metadata and structure for building the GNU `tar` program within the Yocto Project. It includes essential information about the software, the source location, and placeholders for the configure, compile, and install steps. The actual implementation details for `do_configure`, `do_compile`, and `do_install` would be needed to complete the recipe and ensure the software builds and installs correctly.
 
+### Example_3
+
 ```bash
 require tar.inc
 LICENSE = "GPL-2.0-only"
@@ -333,8 +339,6 @@ LIC_FILES_CHKSUM = \
 SRC_URI += "file://avoid_heap_overflow.patch"
 SRC_URI[md5sum] = "c6c4f1c075dbf0f75c29737faa58f290"
 ```
-
-### Breakdown of the Recipe
 
 1. **`require tar.inc`**:
     
@@ -393,55 +397,8 @@ SRC_URI[md5sum] = "c6c4f1c075dbf0f75c29737faa58f290"
 
 This recipe extends the functionality and metadata of the base `tar` recipe by including specific licensing information, a license checksum for verification, and a patch to address a security issue. It leverages the `require` directive to include shared settings from `tar.inc`, ensuring consistency and maintainability in the Yocto project. The inclusion of checksums provides an additional layer of integrity checking for both the license file and the patch.
 
-```bash
-require tar.inc
-LICENSE = "GPL-2.0-only"
-LIC_FILES_CHKSUM = \
-"file://COPYING;md5=59530bdf33659b29e73d4adb9f9f6552"
-SRC_URI += "file://avoid_heap_overflow.patch"
-SRC_URI[md5sum] = "c6c4f1c075dbf0f75c29737faa58f290"
-```
 
-1. **`require tar.inc`**:
-    
-    ```bash
-    require tar.inc
-    
-    ```
-    
-    - This line includes the contents of `tar.inc`, allowing the current recipe to inherit variables and functions defined in that file. This is useful for sharing common configurations among multiple recipes.
-
-2. **`LICENSE`**:
-    
-    ```bash
-    LICENSE = "GPL-3.0-only"
-    
-    ```
-    
-    - This specifies the licensing terms for the software. In this case, it indicates that the software is licensed under the GNU General Public License version 3.0, with no later versions allowed. This is a more permissive license compared to GPL-2.0, providing broader rights for users.
-
-3. **`LIC_FILES_CHKSUM`**:
-    
-    ```bash
-    LIC_FILES_CHKSUM = \\
-    "file://COPYING;md5=d32239bcb673463ab874e80d47fae504"
-    
-    ```
-    
-    - This variable provides a checksum for the license file that accompanies the software. The `file://COPYING` part points to the license file included in the source package, while the `md5` checksum is used to verify the integrity of the file. It ensures that the correct license is present and unchanged.
-
-4. **`SRC_URI[md5sum]`**:
-    
-    ```bash
-    SRC_URI[md5sum] = "2cee42a2ff4f1cd4f9298eeeb2264519"
-    
-    ```
-    
-    - This line provides an MD5 checksum for the entire source archive specified in `SRC_URI`. This is crucial for verifying that the source code downloaded matches the expected content and has not been tampered with.
-
-### Summary
-
-This recipe builds upon the base `tar` functionality defined in `tar.inc` and includes specific information related to licensing. The license is now set to GPL-3.0-only, indicating a different set of rights and responsibilities for users compared to the previous version that used GPL-2.0-only. The recipe also incorporates checksums for both the license file and the source archive to ensure the integrity and authenticity of the files being used. This helps maintain compliance and security in the software distribution process.
+### Example_4
 
 ```bash
 require tar.inc
@@ -453,7 +410,6 @@ variable. Additionally, you need to manually write the [do_compile](https://docs
 and [do_install](https://docs.yoctoproject.org/ref-manual/tasks.html#ref-tasks-install) tasks. T
 ```
 
-### Breakdown of the Recipe
 
 1. **`require tar.inc`**:
     
