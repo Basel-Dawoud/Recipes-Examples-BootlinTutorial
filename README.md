@@ -54,6 +54,7 @@ The specific values for the `SECTION` variable can vary by distribution and pack
 - **Libraries**: Shared libraries needed by applications.
 - **Games**: Packages related to gaming.
 
+
 ## `LICENCE`
 
 The list of source licenses for the recipe. Follow these rules:
@@ -83,6 +84,7 @@ For example, a piece of software whose code is licensed under GPLv2 but has acco
 - `LICENSE:${PN} = "GPL-2.0.only"`
 - `LICENSE:${PN}-doc = "GFDL-1.2"`
 
+
 ## `SRC_URI`
 
 The list of source files — local or remote. This variable tells BitBake which bits to pull for the build and how to pull them. For example, if the recipe or append file needs to fetch a single tarball from the Internet, the recipe or append file uses a [SRC_URI](https://docs.yoctoproject.org/bitbake/2.8/bitbake-user-manual/bitbake-user-manual-ref-variables.html#term-SRC_URI) entry that specifies that tarball. On the other hand, if the recipe or append file needs to fetch a tarball, apply two patches, and include a custom file, the recipe or append file needs an [SRC_URI](https://docs.yoctoproject.org/bitbake/2.8/bitbake-user-manual/bitbake-user-manual-ref-variables.html#term-SRC_URI) variable that specifies all those sources.
@@ -102,6 +104,7 @@ In this example:
 - The main source code is fetched from a tarball.
 - A custom configuration file and a bug fix patch are included in the build process.
 
+
 ## `SRCREV`
 
 The revision of the source code used to build the package. This variable applies only when using Subversion, Git, Mercurial and Bazaar. If you want to build a fixed revision and you want to avoid
@@ -112,6 +115,7 @@ performing a query on the remote repository every time BitBake parses your recip
 - **Fixed Revisions**: It’s best to specify `SRCREV` when you want to work with a known stable commit or specific feature set, rather than the latest version in a branch.
 - **Development vs. Stable Builds**: In a development setting, you might want to point to the latest commit in a branch for active development. In contrast, for production builds, it’s prudent to specify a known good revision.
 - Example: `SRCREV = "2d47b4eb66e705458a17622c2e09367300a7b118"`
+
 
 ## `s`
 
@@ -168,6 +172,7 @@ S = "${WORKDIR}/git"
 
 The `S` variable is crucial for directing the build system to the correct location of the unpacked source code. Properly setting `S` ensures that the build process can locate and compile the source files effectively. By understanding how and when to set this variable, you can manage various source formats and control the build environment more accurately.
 
+
 ## `LIC_FILES_CHECKSUM`
 
 Checksums of the license text in the recipe source code.
@@ -178,6 +183,7 @@ This variable must be defined for all recipes (unless [`LICENSE](https://docs.yo
 
 Setting the `LICENSE` variable to "`CLOSED`" in a BitBake recipe indicates that the software is proprietary and does not require tracking of license changes via `LIC_FILES_CHKSUM`. 
 
+
 ## `do_compile`
 
 Compiles the source code. This task runs with the current working directory set to `${`[B](https://docs.yoctoproject.org/ref-manual/variables.html#term-B)`}`.
@@ -186,6 +192,7 @@ The default behavior of this task is to run the `oe_runmake` function if a makef
 
 If no such file is found, the [do_compile](https://docs.yoctoproject.org/ref-manual/tasks.html#ref-tasks-compile) task does nothing.
 
+
 ### `oe_runmake` function
 
 used to run make.
@@ -193,6 +200,7 @@ used to run make.
 - passes EXTRA_OEMAKE settings to make
 - displays the make command
 - checks for errors generated via the call.
+
 
 ## `do_install`
 
@@ -223,11 +231,13 @@ used to run make.
 - Installs the compiled `hello` binary into that directory with the appropriate permissions.
 
 
+
 # Example of a recipe with a version-agnostic part
 
 A "version-agnostic part" of a recipe refers to sections of the recipe that do not depend on a specific version of the software being built. This can include shared configurations, common build steps, or patches that apply to multiple versions of the software.
 
 Parts of the recipe such as `do_install`, `do_configure`, and even some variables can be written in a way that they apply regardless of the version. This means that only the version-specific elements (like the source URL or version numbers) need to be updated when a new version is released.
+
 
 ### Example_1:
 
@@ -253,6 +263,7 @@ do_install() {
 ```
 
 In this example, the `do_configure` and `do_install` functions can be reused across multiple versions by simply changing the `PV` and `SRC_URI` variables when new versions are released.
+
 
 ### Example_2:
 
@@ -328,6 +339,7 @@ do_install() { ... }
 ### Summary
 
 This recipe provides the necessary metadata and structure for building the GNU `tar` program within the Yocto Project. It includes essential information about the software, the source location, and placeholders for the configure, compile, and install steps. The actual implementation details for `do_configure`, `do_compile`, and `do_install` would be needed to complete the recipe and ensure the software builds and installs correctly.
+
 
 ### Example_3
 
