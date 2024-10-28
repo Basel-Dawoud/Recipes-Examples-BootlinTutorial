@@ -232,7 +232,8 @@ used to run make.
 
 
 
-# Example of a recipe with a version-agnostic part
+
+# Examples of a recipe with a version-agnostic part
 
 A "version-agnostic part" of a recipe refers to sections of the recipe that do not depend on a specific version of the software being built. This can include shared configurations, common build steps, or patches that apply to multiple versions of the software.
 
