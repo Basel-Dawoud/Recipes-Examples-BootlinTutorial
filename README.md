@@ -210,7 +210,7 @@ used to run make.
 
 <aside>
 
-💡 ### Note
+💡 Note
 
 > When installing files, be careful not to set the owner and group IDs of the installed files to unintended values. Some methods of copying files, notably when using the recursive `cp` command, can preserve the UID and/or GID of the original file, which is usually not what you want.
 > 
