@@ -179,7 +179,7 @@ Checksums of the license text in the recipe source code.
 
 This variable tracks changes in license text of the source code files. If the license text is changed, it will trigger a build failure, which gives the developer an opportunity to review any license change.
 
-This variable must be defined for all recipes (unless [`LICENSE](https://docs.yoctoproject.org/ref-manual/variables.html#term-LICENSE)` is set to “`CLOSED`”).
+This variable must be defined for all recipes (unless `LICENCE` is set to “`CLOSED`”).
 
 Setting the `LICENSE` variable to "`CLOSED`" in a BitBake recipe indicates that the software is proprietary and does not require tracking of license changes via `LIC_FILES_CHKSUM`. 
 
